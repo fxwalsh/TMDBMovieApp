@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "Movie Discovery App - React application with TMDB API integration for browsing, filtering, and managing favorite movies"
 
+## Clarifications
+
+### Session 2026-02-16
+
+- Q: TMDB API Authentication method? → A: API key in query parameter (e.g., `?api_key=xxx`)
+- Q: Which TMDB endpoint for fetching movies? → A: `/discover/movie` (flexible discovery with filter/sort support)
+- Q: Genre filter - single or multi-select? → A: Single-select dropdown (one genre at a time)
+- Q: Title filter - client-side or server-side? → A: Server-side filtering (TMDB API `query` parameter via `/search/movie`)
+- Q: Title filter trigger behavior? → A: Debounced input (500ms delay after user stops typing)
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
@@ -40,19 +50,20 @@ Users open the app and see a paginated list of movies from the TMDB database. Th
 
 ### User Story 2 - Filter Movies by Title and Genre (Priority: P2)
 
-Users can filter the movie list by title (case-insensitive text search) and by genre (dropdown/selector). Filters apply to the currently displayed paginated list without breaking pagination. This enables users to narrow down the massive TMDB catalog to find movies matching their interests quickly.
+Users can filter the movie list by title (case-insensitive server-side search with 500ms debounce) and by genre (single-select dropdown). When a title is entered, the app searches the entire TMDB database via `/search/movie`. When only genre is selected, it uses `/discover/movie` with genre filter. Filters apply to the full catalog, not just the current 20 displayed movies. This enables users to narrow down the massive TMDB catalog to find movies matching their interests quickly.
 
-**Why this priority**: High-value user jorneys immediately after discovery. Filtering transforms the app from "browse movies" to "find movies I want." Can be built independently on top of US1.
+**Why this priority**: High-value user journeys immediately after discovery. Filtering transforms the app from "browse movies" to "find movies I want." Can be built independently on top of US1.
 
-**Independent Test**: Can be fully tested by entering a movie title in the search box, verifying only matching movies display, selecting a genre from the dropdown, and confirming the list filters without breaking pagination controls.
+**Independent Test**: Can be fully tested by entering a movie title in the search box (wait 500ms), verifying only matching movies from the entire TMDB database display, selecting a genre from the single-select dropdown, and confirming the list filters without breaking pagination controls.
 
 **Acceptance Scenarios**:
 
-1. **Given** the Home page displays a list of movies, **When** a user types "Inception" in the title filter, **Then** only movies with "Inception" in the title display (case-insensitive)
-2. **Given** a title filter is active, **When** a user clears the filter, **Then** the full list returns
-3. **Given** the Home page displays movies, **When** a user selects a genre from the dropdown, **Then** only movies in that genre display
-4. **Given** both title and genre filters are active, **When** results are displayed, **Then** show only movies matching both criteria
-5. **Given** filters are applied and produce no results, **When** the page renders, **Then** display "No movies found" with the active filters shown
+1. **Given** the Home page displays a list of movies, **When** a user types "Inception" in the title filter and waits 500ms, **Then** only movies with "Inception" in the title display from the entire TMDB database (case-insensitive, server-side search via `/search/movie`)
+2. **Given** a user is typing in the title filter, **When** they continue typing within 500ms, **Then** no API call is triggered until they pause for 500ms
+3. **Given** a title filter is active, **When** a user clears the filter, **Then** the full list returns (via `/discover/movie`)
+4. **Given** the Home page displays movies, **When** a user selects a single genre from the dropdown, **Then** only movies in that genre display (via `/discover/movie` with `with_genres` parameter)
+5. **Given** both title and genre filters are active, **When** results are displayed, **Then** show only movies matching both criteria (via `/search/movie` with genre filtering applied client-side or switched to `/discover/movie` if supported)
+6. **Given** filters are applied and produce no results, **When** the page renders, **Then** display "No movies found" with the active filters shown
 
 ---
 
@@ -88,16 +99,7 @@ Users can add movies to a favorites list from the Movie Details page (and option
 4. **Given** the user is on the Favorites page, **When** they click/tap "Remove" on a card, **Then** the movie is removed from favorites and the page updates immediately
 5. **Given** a user has added movies to favorites, **When** they refresh the page or close/reopen the browser, **Then** all favorite movies persistacross sessions (via localStorage)
 
-
-### Assumptions
-
-- TMDB API is publicly available and accessible from the React app (not blocked by CORS)
-- TMDB API maintains reasonable uptime; temporary failures are handled gracefully
-- localStorage is available and enabled in the user's browser
-- Users' browsers support modern JavaScript (ES2020+)
-- Release dates are provided by TMDB API; if missing, the app gracefully handles the absence
-- Poster artwork URLs from TMDB are valid and accessible
-
+---
 
 ### Edge Cases
 
@@ -112,24 +114,26 @@ Users can add movies to a favorites list from the Movie Details page (and option
 
 ### Functional Requirements
 
-- **FR-001**: System MUST fetch and display a paginated list of movies from the TMDB API with 20 movies per page
-- **FR-002**: Users MUST be able to navigate between pages using Next/Previous controls
-- **FR-003**: System MUST display each movie card with title, release year, rating, and poster artwork
-- **FR-004**: System MUST use a sensible placeholder image when movie poster artwork is unavailable
-- **FR-005**: Users MUST be able to filter the movie list by title using case-insensitive text search
-- **FR-006**: Users MUST be able to filter movies by genre via a dropdown/selector
-- **FR-007**: Multiple filters (title + genre) MUST work together without breaking pagination
-- **FR-008**: Users MUST be able to click a movie card to navigate to the Movie Details page
-- **FR-009**: System MUST display title, overview, genres, runtime, and release date on the Movie Details page
-- **FR-010**: Users MUST be able to add/remove movies from a favorites list from the Movie Details page
-- **FR-011**: System MUST display all favorite movies on a dedicated Favorites page
-- **FR-012**: Users MUST be able to remove movies from favorites on the Favorites page
-- **FR-013**: System MUST persist the favorites list to localStorage
-- **FR-014**: System MUST persist favorites across page refreshes and browser sessions
-- **FR-015**: App MUST display a persistent navigation bar on all pages with links to Home and Favorites
-- **FR-016**: System MUST display a loading state while fetching data from TMDB
-- **FR-017**: System MUST display a user-friendly error message when API calls fail
-- **FR-018**: System MUST display an empty state message when filters return no results
+- **FR-001**: System MUST authenticate with TMDB API using API key in query parameter (e.g., `?api_key=xxx`)
+- **FR-002**: System MUST fetch and display a paginated list of movies from TMDB `/discover/movie` endpoint with 20 movies per page
+- **FR-003**: Users MUST be able to navigate between pages using Next/Previous controls
+- **FR-004**: System MUST display each movie card with title, release year, rating, and poster artwork
+- **FR-005**: System MUST use a sensible placeholder image when movie poster artwork is unavailable
+- **FR-006**: Users MUST be able to filter the movie list by title using server-side search via `/search/movie` endpoint with 500ms debounce after user stops typing
+- **FR-007**: Users MUST be able to filter movies by single genre via dropdown selector (one genre at a time) using `/discover/movie` endpoint with `with_genres` parameter
+- **FR-008**: Multiple filters (title + genre) MUST work together: title search via `/search/movie`, genre filtering applied to results
+- **FR-009**: Users MUST be able to click a movie card to navigate to the Movie Details page
+- **FR-010**: System MUST display title, overview, genres, runtime, and release date on the Movie Details page
+- **FR-011**: Users MUST be able to add/remove movies from a favorites list from the Movie Details page
+- **FR-012**: System MUST display all favorite movies on a dedicated Favorites page
+- **FR-013**: Users MUST be able to remove movies from favorites on the Favorites page
+- **FR-014**: System MUST persist the favorites list to localStorage
+- **FR-015**: System MUST persist favorites across page refreshes and browser sessions
+- **FR-016**: App MUST display a persistent navigation bar on all pages with links to Home and Favorites
+- **FR-017**: System MUST display a loading state while fetching data from TMDB
+- **FR-018**: System MUST display a user-friendly error message when API calls fail
+- **FR-019**: System MUST display an empty state message when filters return no results
+- **FR-020**: Title filter MUST debounce user input with 500ms delay before triggering API call
 
 ### Key Entities
 
@@ -156,7 +160,10 @@ Users can add movies to a favorites list from the Movie Details page (and option
 ## Assumptions
 
 - TMDB API is publicly available and accessible from the React app (not blocked by CORS)
+- TMDB API key is provided via query parameter (`?api_key=xxx`) for authentication
+- App uses TMDB `/discover/movie` endpoint for browse/genre filtering and `/search/movie` for title search
 - TMDB API maintains reasonable uptime; temporary failures are handled gracefully
+- TMDB API supports pagination with `page` parameter for both `/discover/movie` and `/search/movie`
 - localStorage is available and enabled in the user's browser
 - Users' browsers support modern JavaScript (ES2020+)
 - Release dates are provided by TMDB API; if missing, the app gracefully handles the absence
