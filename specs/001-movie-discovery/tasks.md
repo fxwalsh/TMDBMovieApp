@@ -20,15 +20,15 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Initialize Vite + React + TypeScript project using `npm create vite@latest . -- --template react-ts`
-- [ ] T002 [P] Install core dependencies: @mui/material, @mui/icons-material, @emotion/react, @emotion/styled
-- [ ] T003 [P] Install state/data dependencies: @tanstack/react-query, openapi-fetch, zod, react-router-dom
-- [ ] T004 [P] Install dev dependencies: openapi-typescript, vitest, @testing-library/react, @testing-library/user-event, jsdom
-- [ ] T005 Configure TypeScript strict mode in tsconfig.json
-- [ ] T006 [P] Configure ESLint and Prettier for code quality
-- [ ] T007 Generate TypeScript types from OpenAPI spec: `npm run generate:types` (creates src/api/generated/tmdb.ts)
-- [ ] T008 Create project directory structure: src/api/, src/lib/, src/features/, src/components/
-- [ ] T009 [P] Add placeholder image to public/placeholder-movie.png
+- [X] T001 Initialize Vite + React + TypeScript project using `npm create vite@latest . -- --template react-ts`
+- [X] T002 [P] Install core dependencies: @mui/material, @mui/icons-material, @emotion/react, @emotion/styled
+- [X] T003 [P] Install state/data dependencies: @tanstack/react-query, openapi-fetch, zod, react-router-dom
+- [X] T004 [P] Install dev dependencies: openapi-typescript, vitest, @testing-library/react, @testing-library/user-event, jsdom
+- [X] T005 Configure TypeScript strict mode in tsconfig.json
+- [X] T006 [P] Configure ESLint and Prettier for code quality
+- [X] T007 Generate TypeScript types from OpenAPI spec: `npm run generate:types` (creates src/api/generated/tmdb.ts)
+- [X] T008 Create project directory structure: src/api/, src/lib/, src/features/, src/components/
+- [X] T009 [P] Add placeholder image to public/placeholder-movie.png
 
 ---
 
@@ -38,17 +38,17 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T010 [P] Create openapi-fetch client in src/api/client.ts with TMDB base URL and API key middleware
-- [ ] T011 [P] Create AppError class in src/api/errors.ts with kind/status/endpoint/safeDetails fields
-- [ ] T012 [P] Create Zod validation wrapper function in src/api/validate.ts (validateResponse helper)
-- [ ] T013 [P] Create TanStack Query key factory in src/lib/queryKeys.ts (movieKeys, genreKeys)
-- [ ] T014 [P] Create MUI dark theme in src/lib/theme.ts with custom palette and component overrides
-- [ ] T015 Create React Router configuration in src/router.tsx using createBrowserRouter
-- [ ] T016 Setup App.tsx with QueryClientProvider, ThemeProvider, and RouterProvider
-- [ ] T017 [P] Create LoadingState component in src/components/LoadingState.tsx using MUI CircularProgress
-- [ ] T018 [P] Create ErrorMessage component in src/components/ErrorMessage.tsx using MUI Alert
-- [ ] T019 [P] Create EmptyState component in src/components/EmptyState.tsx using MUI Typography
-- [ ] T020 [P] Create AppBar component in src/components/AppBar.tsx with navigation links (Home, Favorites)
+- [X] T010 [P] Create openapi-fetch client in src/api/client.ts with TMDB base URL and API key middleware
+- [X] T011 [P] Create AppError class in src/api/errors.ts with kind/status/endpoint/safeDetails fields
+- [X] T012 [P] Create Zod validation wrapper function in src/api/validate.ts (validateResponse helper)
+- [X] T013 [P] Create TanStack Query key factory in src/lib/queryKeys.ts (movieKeys, genreKeys)
+- [X] T014 [P] Create MUI dark theme in src/lib/theme.ts with custom palette and component overrides
+- [X] T015 Create React Router configuration in src/router.tsx using createBrowserRouter
+- [X] T016 Setup App.tsx with QueryClientProvider, ThemeProvider, and RouterProvider
+- [X] T017 [P] Create LoadingState component in src/components/LoadingState.tsx using MUI CircularProgress
+- [X] T018 [P] Create ErrorMessage component in src/components/ErrorMessage.tsx using MUI Alert
+- [X] T019 [P] Create EmptyState component in src/components/EmptyState.tsx using MUI Typography
+- [X] T020 [P] Create AppBar component in src/components/AppBar.tsx with navigation links (Home, Favorites)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -65,20 +65,20 @@
 
 ### Implementation for User Story 1
 
-- [ ] T021 [P] [US1] Create movieSchema in src/api/schemas.ts (Zod schema wrapping OpenAPI Movie type)
-- [ ] T022 [P] [US1] Create movieListResponseSchema in src/api/schemas.ts (page, results, total_pages, total_results)
-- [ ] T023 [US1] Implement useMovies query hook in src/features/movies/queries.ts for GET /3/discover/movie endpoint
-- [ ] T024 [P] [US1] Create MovieCard component in src/features/movies/components/MovieCard.tsx (displays title, year, rating, poster)
-- [ ] T025 [P] [US1] Create getMovieYear utility in src/api/schemas.ts (extracts year from release_date)
-- [ ] T026 [P] [US1] Create getPosterUrl utility in src/api/schemas.ts (builds TMDB image URL with fallback)
-- [ ] T027 [US1] Create MovieGrid component in src/features/movies/components/MovieGrid.tsx (MUI Grid with MovieCard children)
-- [ ] T028 [P] [US1] Create Pagination component in src/features/movies/components/Pagination.tsx using MUI Pagination
-- [ ] T029 [US1] Implement HomePage in src/features/movies/pages/HomePage.tsx (MovieGrid + Pagination)
-- [ ] T030 [US1] Integrate useMovies hook into HomePage with page state management
-- [ ] T031 [US1] Add loading state to HomePage using LoadingState component
-- [ ] T032 [US1] Add error state to HomePage using ErrorMessage component
-- [ ] T033 [US1] Add empty state to HomePage using EmptyState component
-- [ ] T034 [US1] Add HomePage route to src/router.tsx at path "/"
+- [X] T021 [P] [US1] Create movieSchema in src/api/schemas.ts (Zod schema wrapping OpenAPI Movie type)
+- [X] T022 [P] [US1] Create movieListResponseSchema in src/api/schemas.ts (page, results, total_pages, total_results)
+- [X] T023 [US1] Implement useMovies query hook in src/features/movies/queries.ts for GET /3/discover/movie endpoint
+- [X] T024 [P] [US1] Create MovieCard component in src/features/movies/components/MovieCard.tsx (displays title, year, rating, poster)
+- [X] T025 [P] [US1] Create getMovieYear utility in src/api/schemas.ts (extracts year from release_date)
+- [X] T026 [P] [US1] Create getPosterUrl utility in src/api/schemas.ts (builds TMDB image URL with fallback)
+- [X] T027 [US1] Create MovieGrid component in src/features/movies/components/MovieGrid.tsx (MUI Grid with MovieCard children)
+- [X] T028 [P] [US1] Create Pagination component in src/features/movies/components/Pagination.tsx using MUI Pagination
+- [X] T029 [US1] Implement HomePage in src/features/movies/pages/HomePage.tsx (MovieGrid + Pagination)
+- [X] T030 [US1] Integrate useMovies hook into HomePage with page state management
+- [X] T031 [US1] Add loading state to HomePage using LoadingState component
+- [X] T032 [US1] Add error state to HomePage using ErrorMessage component
+- [X] T033 [US1] Add empty state to HomePage using EmptyState component
+- [X] T034 [US1] Add HomePage route to src/router.tsx at path "/"
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. Users can browse movies!
 
