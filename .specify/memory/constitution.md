@@ -50,6 +50,16 @@ export function UserPage() { ... }
 export type UserPageProps = { ... }
 ```
 
+## UI System
+
+The application MUST use **Material UI (MUI)** as the primary component and styling system.
+
+- New UI MUST prefer MUI components (`AppBar`, `Container`, `Grid`, `Card`, etc.) over custom-built equivalents.
+- Styling MUST use MUI theming (`theme.spacing`, palette, typography). Avoid ad-hoc global CSS.
+- Any exception (custom styling/component) must be justified in the PR description or commit message.
+
+Rationale: Consistent design language, accessible components by default, centralized theming, reduced custom CSS maintenance.
+
 ## Required Repo Conventions
 
 ### File Layout (Minimum Structure)
@@ -76,6 +86,7 @@ A change is only "done" if it satisfies `docs/definition-of-done.md`. Checklist 
 - ✓ All states (loading/error/empty/success) handled
 - ✓ Errors normalized to AppError model
 - ✓ TanStack Query hooks created and used
+- ✓ MUI components used for UI (exceptions justified)
 - ✓ Tests pass (unit and integration)
 - ✓ No console errors or warnings
 
@@ -88,9 +99,10 @@ Before committing code, verify:
 3. **State Management**: Are all server state calls going through TanStack Query?
 4. **Error Handling**: Are all error cases handled and normalized to AppError?
 5. **UI States**: Do components render loading/error/empty/success states?
-6. **Contract Deviations**: If API differs from spec, is it documented in `contract-deviations.md`?
-7. **Tests Pass**: Do unit and integration tests pass locally?
-8. **No Console Errors**: Is the browser console clean?
+6. **UI System**: Are MUI components used? Is styling via MUI theme? (Exceptions justified?)
+7. **Contract Deviations**: If API differs from spec, is it documented in `contract-deviations.md`?
+8. **Tests Pass**: Do unit and integration tests pass locally?
+9. **No Console Errors**: Is the browser console clean?
 
 ### Handling Deviations from OpenAPI
 If the API behavior differs from OpenAPI:
@@ -124,9 +136,11 @@ For daily development guidance and patterns, refer to `docs/quickstart.md` and f
 
 ---
 
-**Version**: 1.1.0 | **Ratified**: 2026-02-16 | **Last Amended**: 2026-02-16
+**Version**: 1.2.0 | **Ratified**: 2026-02-16 | **Last Amended**: 2026-02-16
 
 <!-- AMENDMENT LOG
+1.2.0 (2026-02-16): Added UI System principle requiring Material UI (MUI) as primary component and styling system. Rationale: consistent design language, accessible components by default, centralized theming, reduced custom CSS maintenance.
+
 1.1.0 (2026-02-16): Added Module Exports (TypeScript) principle requiring named exports only, no default exports. Rationale: consistent imports, easier refactors, clearer symbols, fewer accidental renames.
 
 1.0.1 (2026-02-16): Adapted development workflow and governance for single-person project. Changed "Code Review Checklist" to "Self-Review Checklist", simplified amendment process, and streamlined compliance verification. No principles changed.
