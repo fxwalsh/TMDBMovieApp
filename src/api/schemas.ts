@@ -80,7 +80,9 @@ export type FavoritesArray = z.infer<typeof favoritesArraySchema>
 
 export function getMovieYear(movie: Movie): string {
   if (!movie.release_date) return 'Unknown'
-  return new Date(movie.release_date).getFullYear().toString()
+  const parsedDate = new Date(movie.release_date)
+  if (Number.isNaN(parsedDate.getTime())) return 'Unknown'
+  return parsedDate.getFullYear().toString()
 }
 
 export function getPosterUrl(

@@ -124,16 +124,16 @@
 
 ### Implementation for User Story 3
 
-- [ ] T048 [P] [US3] Create movieDetailsSchema in src/api/schemas.ts (extends movieSchema with genres array, runtime required)
-- [ ] T049 [US3] Implement useMovieDetails query hook in src/features/movies/queries.ts for GET /3/movie/{movie_id} endpoint
-- [ ] T050 [P] [US3] Create MovieDetails component in src/features/movies/components/MovieDetails.tsx (displays full movie info)
-- [ ] T051 [US3] Implement MovieDetailsPage in src/features/movies/pages/MovieDetailsPage.tsx using useMovieDetails hook
-- [ ] T052 [US3] Add loading state to MovieDetailsPage using LoadingState component
-- [ ] T053 [US3] Add error state to MovieDetailsPage using ErrorMessage component (e.g., movie not found)
-- [ ] T054 [US3] Add MovieDetailsPage route to src/router.tsx at path "/movie/:id"
-- [ ] T055 [US3] Add onClick navigation to MovieCard component using react-router-dom's useNavigate
-- [ ] T056 [US3] Add Back button to MovieDetailsPage navigating to HomePage
-- [ ] T057 [US3] Test navigation preserves HomePage filters and pagination state
+- [X] T048 [P] [US3] Create movieDetailsSchema in src/api/schemas.ts (extends movieSchema with genres array, runtime required)
+- [X] T049 [US3] Implement useMovieDetails query hook in src/features/movies/queries.ts for GET /3/movie/{movie_id} endpoint
+- [X] T050 [P] [US3] Create MovieDetails component in src/features/movies/components/MovieDetails.tsx (displays full movie info)
+- [X] T051 [US3] Implement MovieDetailsPage in src/features/movies/pages/MovieDetailsPage.tsx using useMovieDetails hook
+- [X] T052 [US3] Add loading state to MovieDetailsPage using LoadingState component
+- [X] T053 [US3] Add error state to MovieDetailsPage using ErrorMessage component (e.g., movie not found)
+- [X] T054 [US3] Add MovieDetailsPage route to src/router.tsx at path "/movie/:id"
+- [X] T055 [US3] Add onClick navigation to MovieCard component using react-router-dom's useNavigate
+- [X] T056 [US3] Add Back button to MovieDetailsPage navigating to HomePage
+- [X] T057 [US3] Test navigation preserves HomePage filters and pagination state
 
 **Checkpoint**: All user stories 1, 2, and 3 should now be independently functional. Users can browse, filter, and view details!
 
@@ -150,24 +150,24 @@
 
 ### Implementation for User Story 4
 
-- [ ] T058 [P] [US4] Create favoritesArraySchema in src/api/schemas.ts (Zod array of positive integers)
-- [ ] T059 [US4] Create useFavorites hook in src/features/favorites/hooks/useFavorites.ts with localStorage CRUD operations
-- [ ] T060 [US4] Implement loadFavorites function in useFavorites (reads from localStorage, validates with Zod)
-- [ ] T061 [US4] Implement saveFavorites function in useFavorites (writes to localStorage with validation)
-- [ ] T062 [US4] Implement toggleFavorite function in useFavorites (add/remove movie ID)
-- [ ] T063 [US4] Implement isFavorite function in useFavorites (checks if movie is favorited)
-- [ ] T064 [P] [US4] Create FavoriteButton component in src/features/favorites/components/FavoriteButton.tsx (Add/Remove toggle)
-- [ ] T065 [US4] Add FavoriteButton to MovieDetailsPage using useFavorites hook
-- [ ] T066 [US4] Update FavoriteButton icon and text based on isFavorite state
-- [ ] T067 [P] [US4] Create FavoritesList component in src/features/favorites/components/FavoritesList.tsx (reuses MovieGrid)
-- [ ] T068 [US4] Implement FavoritesPage in src/features/favorites/pages/FavoritesPage.tsx
-- [ ] T069 [US4] Fetch full movie details for each favorited ID in FavoritesPage using useMovieDetails
-- [ ] T070 [US4] Add loading state to FavoritesPage while fetching movie details
-- [ ] T071 [US4] Add empty state to FavoritesPage when no favorites exist
-- [ ] T072 [US4] Add Remove button to each movie card in FavoritesPage
-- [ ] T073 [US4] Add FavoritesPage route to src/router.tsx at path "/favorites"
-- [ ] T074 [US4] Add Favorites link to AppBar navigation
-- [ ] T075 [US4] Test localStorage persistence across page refreshes and browser sessions
+- [X] T058 [P] [US4] Create favoritesArraySchema in src/api/schemas.ts (Zod array of positive integers)
+- [X] T059 [US4] Create useFavorites hook in src/features/favorites/hooks/useFavorites.ts with localStorage CRUD operations
+- [X] T060 [US4] Implement loadFavorites function in useFavorites (reads from localStorage, validates with Zod)
+- [X] T061 [US4] Implement saveFavorites function in useFavorites (writes to localStorage with validation)
+- [X] T062 [US4] Implement toggleFavorite function in useFavorites (add/remove movie ID)
+- [X] T063 [US4] Implement isFavorite function in useFavorites (checks if movie is favorited)
+- [X] T064 [P] [US4] Create FavoriteButton component in src/features/favorites/components/FavoriteButton.tsx (Add/Remove toggle)
+- [X] T065 [US4] Add FavoriteButton to MovieDetailsPage using useFavorites hook
+- [X] T066 [US4] Update FavoriteButton icon and text based on isFavorite state
+- [X] T067 [P] [US4] Create FavoritesList component in src/features/favorites/components/FavoritesList.tsx (reuses MovieGrid)
+- [X] T068 [US4] Implement FavoritesPage in src/features/favorites/pages/FavoritesPage.tsx
+- [X] T069 [US4] Fetch full movie details for each favorited ID in FavoritesPage using useMovieDetails
+- [X] T070 [US4] Add loading state to FavoritesPage while fetching movie details
+- [X] T071 [US4] Add empty state to FavoritesPage when no favorites exist
+- [X] T072 [US4] Add Remove button to each movie card in FavoritesPage
+- [X] T073 [US4] Add FavoritesPage route to src/router.tsx at path "/favorites"
+- [X] T074 [US4] Add Favorites link to AppBar navigation
+- [X] T075 [US4] Test localStorage persistence across page refreshes and browser sessions
 
 **Checkpoint**: All user stories 1-4 should now be fully functional. Users have a complete movie discovery app with favorites!
 
@@ -177,17 +177,17 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T076 [P] Add getRatingColor utility to src/api/schemas.ts for rating badges (success/warning/error colors)
-- [ ] T077 [P] Apply rating colors to MovieCard vote_average display using MUI Chip
-- [ ] T078 [P] Add image loading optimization to MovieCard (lazy loading, error handling)
-- [ ] T079 [P] Add React.memo to MovieCard for performance optimization
-- [ ] T080 [P] Add accessibility improvements: ARIA labels, keyboard navigation, focus management
-- [ ] T081 [P] Add MUI Skeleton loading placeholders to MovieGrid during data fetch
-- [ ] T082 [P] Test error scenarios: API unavailable, invalid movie ID, localStorage cleared
-- [ ] T083 [P] Add graceful handling for movies with missing fields (no release_date, no poster, no overview)
-- [ ] T084 Verify all constitution principles are met (named exports, MUI only, TanStack Query, Zod validation)
-- [ ] T085 Run quickstart.md validation steps to confirm developer onboarding works
-- [ ] T086 [P] Update documentation with any discovered API deviations in docs/contract-deviations.md
+- [X] T076 [P] Add getRatingColor utility to src/api/schemas.ts for rating badges (success/warning/error colors)
+- [X] T077 [P] Apply rating colors to MovieCard vote_average display using MUI Chip
+- [X] T078 [P] Add image loading optimization to MovieCard (lazy loading, error handling)
+- [X] T079 [P] Add React.memo to MovieCard for performance optimization
+- [X] T080 [P] Add accessibility improvements: ARIA labels, keyboard navigation, focus management
+- [X] T081 [P] Add MUI Skeleton loading placeholders to MovieGrid during data fetch
+- [X] T082 [P] Test error scenarios: API unavailable, invalid movie ID, localStorage cleared
+- [X] T083 [P] Add graceful handling for movies with missing fields (no release_date, no poster, no overview)
+- [X] T084 Verify all constitution principles are met (named exports, MUI only, TanStack Query, Zod validation)
+- [X] T085 Run quickstart.md validation steps to confirm developer onboarding works
+- [X] T086 [P] Update documentation with any discovered API deviations in docs/contract-deviations.md
 
 ---
 

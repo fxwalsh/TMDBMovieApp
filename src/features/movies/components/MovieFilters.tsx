@@ -36,17 +36,20 @@ export function MovieFilters({
       }}
     >
       <TextField
+        id="movie-title-filter"
         label="Search by title"
         value={title}
         onChange={(event) => onTitleChange(event.target.value)}
         placeholder="Try Inception, The Matrix, etc."
         fullWidth
+        inputProps={{ 'aria-label': 'Search movies by title' }}
       />
 
       <FormControl fullWidth disabled={isLoading}>
         <InputLabel id="genre-filter-label">Genre</InputLabel>
         <Select
           labelId="genre-filter-label"
+          id="genre-filter-select"
           label="Genre"
           value={selectedGenreId ?? null}
           onChange={(event) => {

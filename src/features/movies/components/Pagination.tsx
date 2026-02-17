@@ -28,6 +28,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
         size="large"
         showFirstButton
         showLastButton
+        aria-label="Movie results pagination"
       />
       <Typography variant="body2" color="text.secondary">
         Page {currentPage} of {Math.min(totalPages, 500)}
