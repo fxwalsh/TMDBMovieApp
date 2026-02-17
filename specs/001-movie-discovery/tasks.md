@@ -95,19 +95,19 @@
 
 ### Implementation for User Story 2
 
-- [ ] T035 [P] [US2] Create genreSchema in src/api/schemas.ts (Zod schema for Genre: id, name)
-- [ ] T036 [P] [US2] Create genreListResponseSchema in src/api/schemas.ts (genres array wrapper)
-- [ ] T037 [P] [US2] Implement useSearchMovies query hook in src/features/movies/queries.ts for GET /3/search/movie endpoint
-- [ ] T038 [P] [US2] Implement useGenres query hook in src/features/movies/queries.ts for GET /3/genre/movie/list endpoint
-- [ ] T039 [P] [US2] Create useDebounce custom hook in src/shared/hooks/useDebounce.ts (500ms delay)
-- [ ] T040 [US2] Create MovieFilters component in src/features/movies/components/MovieFilters.tsx (TextField for title, Select for genre)
-- [ ] T041 [US2] Add title filter state to HomePage with useDebounce integration
-- [ ] T042 [US2] Add genre filter state to HomePage with genre dropdown integration
-- [ ] T043 [US2] Update HomePage to conditionally use useMovies (no title) or useSearchMovies (with title)
-- [ ] T044 [US2] Add genre filtering logic to HomePage (pass with_genres to useMovies when title is empty)
-- [ ] T045 [US2] Handle combined filters in HomePage (title search + client-side genre filtering if needed)
-- [ ] T046 [US2] Add "No movies found" empty state when filters return zero results
-- [ ] T047 [US2] Display active filters in empty state message for user clarity
+- [X] T035 [P] [US2] Create genreSchema in src/api/schemas.ts (Zod schema for Genre: id, name)
+- [X] T036 [P] [US2] Create genreListResponseSchema in src/api/schemas.ts (genres array wrapper)
+- [X] T037 [P] [US2] Implement useSearchMovies query hook in src/features/movies/queries.ts for GET /3/search/movie endpoint
+- [X] T038 [P] [US2] Implement useGenres query hook in src/features/movies/queries.ts for GET /3/genre/movie/list endpoint
+- [X] T039 [P] [US2] Create useDebounce custom hook in src/shared/hooks/useDebounce.ts (500ms delay)
+- [X] T040 [US2] Create MovieFilters component in src/features/movies/components/MovieFilters.tsx (TextField for title, Select for genre)
+- [X] T041 [US2] Add title filter state to HomePage with useDebounce integration
+- [X] T042 [US2] Add genre filter state to HomePage with genre dropdown integration
+- [X] T043 [US2] Update HomePage to conditionally use useMovies (no title) or useSearchMovies (with title)
+- [X] T044 [US2] Add genre filtering logic to HomePage (pass with_genres to useMovies when title is empty)
+- [X] T045 [US2] Handle combined filters in HomePage (title search + client-side genre filtering if needed)
+- [X] T046 [US2] Add "No movies found" empty state when filters return zero results
+- [X] T047 [US2] Display active filters in empty state message for user clarity
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Users can browse and filter!
 

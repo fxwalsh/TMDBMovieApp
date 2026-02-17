@@ -8,14 +8,16 @@ import { AppError } from '@/api/errors'
 export interface UseMoviesOptions {
   page?: number
   genreId?: number
+  enabled?: boolean
 }
 
 /**
  * Query hook for fetching paginated movies from /discover/movie
  */
-export function useMovies({ page = 1, genreId }: UseMoviesOptions = {}) {
+export function useMovies({ page = 1, genreId, enabled = true }: UseMoviesOptions = {}) {
   return useQuery({
     queryKey: queryKeys.movies.list({ page, genreId }),
+    enabled,
     queryFn: async (): Promise<MovieListResponse> => {
       const params: Record<string, string> = {
         page: page.toString(),
