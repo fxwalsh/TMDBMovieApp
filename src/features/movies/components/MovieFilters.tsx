@@ -39,7 +39,7 @@ export function MovieFilters({
         label="Search by title"
         value={title}
         onChange={(event) => onTitleChange(event.target.value)}
-        placeholder="Try Inceotion"
+        placeholder="Try Inception, The Matrix, etc."
         fullWidth
       />
 
@@ -48,10 +48,10 @@ export function MovieFilters({
         <Select
           labelId="genre-filter-label"
           label="Genre"
-          value={selectedGenreId ?? ''}
+          value={selectedGenreId ?? null}
           onChange={(event) => {
             const value = event.target.value
-            onGenreChange(value === '' ? null : Number(value))
+            onGenreChange(Number(value) || null)
           }}
         >
           <MenuItem value="">All genres</MenuItem>
